@@ -1,0 +1,4 @@
+---
+interface Props{title:string;body:string;primaryLabel:string;primaryHref:string;secondaryLabel?:string;secondaryHref?:string} const p=Astro.props;
+---
+<section class="px-6 py-16"><div class="topo mx-auto flex max-w-7xl flex-col gap-8 rounded-3xl bg-forest p-8 text-white md:flex-row md:items-center md:justify-between md:p-14"><div><h2 class="text-3xl text-white md:text-4xl">{p.title}</h2><p class="mt-3 max-w-2xl text-white/70">{p.body}</p></div><div class="flex shrink-0 flex-wrap gap-3"><a class="btn-primary" href={p.primaryHref}>{p.primaryLabel}</a>{p.secondaryLabel&&<a class="btn border border-white/40 text-white hover:bg-white hover:text-forest" href={p.secondaryHref}>{p.secondaryLabel}</a>}</div></div></section>

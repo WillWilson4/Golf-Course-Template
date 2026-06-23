@@ -1,0 +1,5 @@
+---
+interface Props { eyebrow?:string; title?:string; intro?:string; tone?:'light'|'cream'|'green'; id?:string; narrow?:boolean }
+const {eyebrow,title,intro,tone='light',id,narrow=false}=Astro.props; const tones={light:'bg-[#fbfcf9]',cream:'bg-cream',green:'bg-forest text-white'};
+---
+<section {id} class:list={['px-6 py-16 md:py-24',tones[tone]]}><div class:list={['mx-auto',narrow?'max-w-3xl':'max-w-7xl']}>{eyebrow&&<p class:list={['eyebrow',tone==='green'&&'text-gold']}>{eyebrow}</p>}{title&&<h2 class:list={['mt-3 text-3xl md:text-5xl',tone==='green'&&'text-white']}>{title}</h2>}{intro&&<p class:list={['mt-5 max-w-2xl text-lg leading-8',tone==='green'?'text-white/70':'text-charcoal/70']}>{intro}</p>}<div class:list={[(eyebrow||title||intro)&&'mt-10']}><slot/></div></div></section>

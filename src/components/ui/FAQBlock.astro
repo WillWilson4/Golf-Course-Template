@@ -1,0 +1,4 @@
+---
+interface Props{items:{question:string;answer:string}[]} const {items}=Astro.props;
+---
+<div class="divide-y divide-forest/10 border-y border-forest/10">{items.map((item,i)=><details class="group py-5" open={i===0}><summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl text-forest">{item.question}<span class="text-gold group-open:rotate-45">+</span></summary><p class="max-w-3xl pt-3 leading-7 text-charcoal/70">{item.answer}</p></details>)}</div>

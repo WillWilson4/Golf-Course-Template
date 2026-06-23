@@ -1,0 +1,4 @@
+---
+interface Props{section:{title:string;items:readonly {name:string;description:string;price:string}[]}} const {section}=Astro.props;
+---
+<section class="surface p-7"><h2 class="text-3xl">{section.title}</h2><div class="mt-6 divide-y divide-forest/10">{section.items.map(item=><div class="grid grid-cols-[1fr_auto] gap-4 py-4"><div><h3 class="font-sans text-base font-bold">{item.name}</h3><p class="mt-1 text-sm text-charcoal/60">{item.description}</p></div><p class="font-semibold text-fairway">{item.price}</p></div>)}</div></section>
