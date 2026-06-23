@@ -1,0 +1,31 @@
+---
+interface Props {
+  stats: readonly { value: string; label: string }[];
+  dark?: boolean;
+}
+
+const { stats, dark = false } = Astro.props;
+---
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  {
+    stats.map((stat) => (
+      <div
+        class:list={[
+          "border-t pt-5",
+          dark ? "border-white/20" : "border-forest/15",
+        ]}
+      >
+        <p class="font-serif text-5xl text-gold">{stat.value}</p>
+        <p
+          class:list={[
+            "mt-2 text-sm",
+            dark ? "text-white/65" : "text-charcoal/65",
+          ]}
+        >
+          {stat.label}
+        </p>
+      </div>
+    ))
+  }
+</div>

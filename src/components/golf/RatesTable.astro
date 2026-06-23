@@ -1,4 +1,27 @@
 ---
-import {rates} from '../../data/rates';
+import { rates } from "../../data/rates";
 ---
-<div class="overflow-x-auto rounded-2xl border border-forest/10"><table class="w-full min-w-lg text-left"><thead class="bg-forest text-white"><tr><th class="p-4">Rate</th><th class="p-4">Walking</th><th class="p-4">With cart</th></tr></thead><tbody class="divide-y divide-forest/10">{rates.map(rate=><tr><th class="p-4 font-medium">{rate.label}</th><td class="p-4">{rate.walking}</td><td class="p-4">{rate.riding}</td></tr>)}</tbody></table></div>
+
+<div class="overflow-x-auto rounded-2xl border border-forest/10">
+  <table class="w-full min-w-lg text-left">
+    <thead class="bg-forest text-white"
+      ><tr
+        ><th class="p-4">Rate</th><th class="p-4">Walking</th><th class="p-4"
+          >With cart</th
+        ></tr
+      ></thead
+    ><tbody class="divide-y divide-forest/10"
+      >{
+        rates.map((rate) => (
+          <tr>
+            <>
+              <th class="p-4 font-medium">{rate.label}</th>
+              <td class="p-4">{rate.walking}</td>
+              <td class="p-4">{rate.riding}</td>
+            </>
+          </tr>
+        ))
+      }</tbody
+    >
+  </table>
+</div>

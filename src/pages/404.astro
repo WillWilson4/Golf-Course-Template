@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/ui/Section.astro";
+import { business } from "../data/business";
+import { utilitySeo } from "../data/seo";
+
+const links = [
+  { label: "Book a tee time", href: business.bookingUrl },
+  { label: "Explore the course", href: "/course" },
+  { label: "Plan an event", href: "/events" },
+  { label: "View the menu", href: "/menu" },
+  { label: "Contact the golf shop", href: "/contact" },
+];
+---
+
+<BaseLayout {...utilitySeo.notFound} robots="noindex, follow">
+  <Section
+    tone="cream"
+    eyebrow="404"
+    title="That page is out of bounds."
+    intro="The link may be old, or the page may have moved. These routes should get you back into play."
+  >
+    <nav
+      class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+      aria-label="Helpful links"
+    >
+      {
+        links.map((link) => (
+          <a
+            class="surface p-5 font-bold text-fairway hover:bg-white"
+            href={link.href}
+          >
+            {link.label} <span aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </nav>
+  </Section>
+</BaseLayout>

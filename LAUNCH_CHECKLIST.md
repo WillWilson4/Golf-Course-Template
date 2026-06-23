@@ -1,0 +1,21 @@
+# Launch checklist
+
+- [ ] Replace all demo course details in `src/data/business.ts`.
+- [ ] Replace the production domain in `astro.config.mjs`.
+- [ ] Replace `siteUrl` in `src/data/business.ts`.
+- [ ] Replace the sitemap URL in `public/robots.txt`.
+- [ ] Review the generated social image at `/social-card.svg`.
+- [ ] Replace visual placeholders with optimized course photography.
+- [ ] Verify the external booking URL.
+- [ ] Verify phone, email, address, directions, coordinates, and hours.
+- [ ] Verify rates, menu items, specials, and membership prices.
+- [ ] Update or remove all sample-content disclaimers.
+- [ ] Connect contact/event forms or remove their sections.
+- [ ] Update the privacy page for any forms, analytics, booking, or map integrations.
+- [ ] Add real Facebook, Instagram, and Google Business Profile links.
+- [ ] Review every page on a narrow mobile viewport and with keyboard navigation.
+- [ ] Run `npm run check`.
+- [ ] Run `npm run build`.
+- [ ] Deploy through Cloudflare Pages using output directory `dist`.
+- [ ] Verify Cloudflare response headers and the custom 404 page.
+- [ ] Submit the sitemap in Google Search Console.

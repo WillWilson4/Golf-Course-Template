@@ -1,0 +1,19 @@
+---
+import { localSeo } from "../../data/localSeo";
+import Section from "./Section.astro";
+---
+
+<Section
+  tone="cream"
+  eyebrow={localSeo.eyebrow}
+  title={localSeo.title}
+  intro={localSeo.body}
+>
+  <a
+    class="font-bold text-fairway underline decoration-gold underline-offset-4"
+    href={localSeo.link.href}
+  >
+    {localSeo.link.label}
+    <span aria-hidden="true">→</span>
+  </a>
+</Section>

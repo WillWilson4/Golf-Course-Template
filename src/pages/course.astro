@@ -1,4 +1,107 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/ui/PageHero.astro'; import Breadcrumbs from '../components/ui/Breadcrumbs.astro'; import Section from '../components/ui/Section.astro'; import CTASection from '../components/ui/CTASection.astro'; import ScorecardTable from '../components/golf/ScorecardTable.astro'; import {course} from '../data/course'; import {business} from '../data/business'; import {pageSeo} from '../data/seo';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ScorecardTable from "../components/golf/ScorecardTable.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import CTASection from "../components/ui/CTASection.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Section from "../components/ui/Section.astro";
+import StatGrid from "../components/ui/StatGrid.astro";
+import VisualPlaceholder from "../components/ui/VisualPlaceholder.astro";
+import { business } from "../data/business";
+import { course } from "../data/course";
+import { pageSeo } from "../data/seo";
 ---
-<BaseLayout {...pageSeo.course}><Breadcrumbs items={[{label:'Home',href:'/'},{label:'Course'}]}/><PageHero eyebrow="The course" title="Interesting choices. Honest golf." intro="Our 18-hole layout moves through open meadows, mature cedar stands, and a rolling ridge—with a tee that fits your day."><a class="btn-primary" href={business.bookingUrl}>Book a tee time</a></PageHero><Section eyebrow="Scorecard" title="Choose the right distance." intro="A comfortable tee creates more chances to hit greens and keeps the round moving."><ScorecardTable/></Section><Section tone="green" eyebrow="Course details" title="Built for a round you want to replay."><div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{course.stats.map(s=><div><p class="font-serif text-5xl text-gold">{s.value}</p><p class="mt-2 text-white/65">{s.label}</p></div>)}</div></Section><Section eyebrow="Hole by hole" title="A quick look before you play."><div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{course.holes.map(h=><article class="surface p-6"><div class="flex items-start justify-between"><p class="eyebrow">Hole {h.number}</p><p class="text-sm font-bold text-fairway">Par {h.par} · {h.yards} yds</p></div><h3 class="mt-5 text-2xl">{h.name}</h3><p class="mt-3 text-sm leading-6 text-charcoal/65">{h.tip}</p></article>)}</div></Section><Section tone="cream" eyebrow="Before you play" title="Course policies"><ul class="grid gap-3 md:grid-cols-2">{course.policies.map(p=><li class="flex gap-3 rounded-xl bg-white p-4"><span class="text-gold">◆</span>{p}</li>)}</ul></Section><Section eyebrow="Course gallery" title="The view changes with the round." intro="Replace these visual placeholders with optimized WebP or AVIF course photography in public/images."><div class="grid gap-4 md:grid-cols-3"><div class="topo min-h-72 rounded-2xl bg-forest"></div><div class="topo min-h-72 rounded-2xl bg-fairway"></div><div class="topo min-h-72 rounded-2xl bg-gold/60"></div></div></Section><CTASection title="See it for yourself." body="Check availability and choose the tee that makes the course yours." primaryLabel="Book a tee time" primaryHref={business.bookingUrl}/></BaseLayout>
+
+<BaseLayout {...pageSeo.course}>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Course" }]} />
+  <PageHero
+    eyebrow="The course"
+    title="Interesting choices. Honest golf."
+    intro="Our 18-hole layout moves through open meadows, mature cedar stands, and a rolling ridge—with a tee that fits your day."
+  >
+    <a class="btn-primary" href={business.bookingUrl}>Book a tee time</a>
+  </PageHero>
+
+  <Section
+    eyebrow="Scorecard"
+    title="Choose the right distance."
+    intro="A comfortable tee creates more chances to hit greens and keeps the round moving."
+  >
+    <ScorecardTable />
+    <aside class="mt-6 rounded-2xl border border-gold/40 bg-cream p-6">
+      <h3 class="text-2xl">{course.teeGuide.title}</h3>
+      <p class="mt-2 max-w-3xl leading-7 text-charcoal/70">
+        {course.teeGuide.body}
+      </p>
+    </aside>
+  </Section>
+
+  <Section
+    tone="green"
+    eyebrow="Course details"
+    title="Built for a round you want to replay."
+  >
+    <StatGrid stats={course.stats} dark />
+  </Section>
+
+  <Section eyebrow="Hole by hole" title="A quick look before you play.">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        course.holes.map((hole) => (
+          <article class="surface p-6">
+            <div class="flex items-start justify-between gap-4">
+              <p class="eyebrow">Hole {hole.number}</p>
+              <p class="text-sm font-bold text-fairway">
+                Par {hole.par} · {hole.yards} yds
+              </p>
+            </div>
+            <h3 class="mt-5 text-2xl">{hole.name}</h3>
+            <p class="mt-3 text-sm leading-6 text-charcoal/65">{hole.tip}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section tone="cream" eyebrow="Before you play" title="Course policies">
+    <ul class="grid gap-3 md:grid-cols-2">
+      {
+        course.policies.map((policy) => (
+          <li class="flex gap-3 rounded-xl bg-white p-4">
+            <span class="text-gold" aria-hidden="true">
+              ◆
+            </span>
+            {policy}
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section
+    eyebrow="Course gallery"
+    title="The view changes with the round."
+    intro="Replace these lightweight placeholders with optimized WebP or AVIF course photography."
+  >
+    <div class="grid gap-4 md:grid-cols-3">
+      <VisualPlaceholder
+        label="Course photography placeholder: opening fairway"
+      />
+      <VisualPlaceholder
+        label="Course photography placeholder: putting green"
+        tone="fairway"
+      />
+      <VisualPlaceholder
+        label="Course photography placeholder: clubhouse at sunset"
+        tone="gold"
+      />
+    </div>
+  </Section>
+
+  <CTASection
+    title="See it for yourself."
+    body="Check availability and choose the tee that makes the course yours."
+    primaryLabel="Book a tee time"
+    primaryHref={business.bookingUrl}
+  />
+</BaseLayout>

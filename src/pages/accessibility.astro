@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Section from "../components/ui/Section.astro";
+import { business } from "../data/business";
+import { accessibilityContent } from "../data/pageContent";
+import { utilitySeo } from "../data/seo";
+---
+
+<BaseLayout {...utilitySeo.accessibility}>
+  <Breadcrumbs
+    items={[{ label: "Home", href: "/" }, { label: "Accessibility" }]}
+  />
+  <PageHero
+    eyebrow="Site information"
+    title={accessibilityContent.title}
+    intro={accessibilityContent.intro}
+  />
+  <Section narrow>
+    <div class="prose-guide">
+      <h2>Our approach</h2>
+      <p>
+        We aim for clear headings, keyboard-friendly navigation, readable
+        contrast, descriptive links, labeled forms, and layouts that work across
+        screen sizes and zoom levels.
+      </p>
+      <h2>Need assistance?</h2>
+      <p>
+        If part of this website is difficult to use, call <a
+          href={business.phoneHref}>{business.phone}</a
+        >
+        or email <a href={`mailto:${business.email}`}>{business.email}</a>.
+        Please include the page and task you were trying to complete.
+      </p>
+      <h2>Ongoing improvement</h2>
+      <p>
+        Accessibility is practical, ongoing work. We review this site as content
+        and integrations change and welcome specific feedback.
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

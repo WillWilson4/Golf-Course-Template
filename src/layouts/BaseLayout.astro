@@ -1,7 +1,66 @@
 ---
-import '../styles/global.css'; import SiteHeader from '../components/layout/SiteHeader.astro'; import Footer from '../components/layout/Footer.astro'; import StructuredData from '../components/seo/StructuredData.astro'; import { business } from '../data/business'; import { seoDefaults } from '../data/seo';
-interface Props { title:string; description:string; image?:string; schema?:Record<string,unknown> }
-const { title,description,image=seoDefaults.image,schema }=Astro.props; const canonical=new URL(Astro.url.pathname,business.siteUrl); const imageUrl=new URL(image,business.siteUrl);
-const localSchema={'@context':'https://schema.org','@type':'SportsActivityLocation',name:business.name,url:business.siteUrl,telephone:business.phone,address:{'@type':'PostalAddress',streetAddress:business.address.street,addressLocality:business.address.city,addressRegion:business.address.region,postalCode:business.address.postalCode}};
+import "../styles/global.css";
+import Footer from "../components/layout/Footer.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import StructuredData from "../components/seo/StructuredData.astro";
+import { business } from "../data/business";
+import { seoDefaults } from "../data/seo";
+import { siteSettings } from "../data/siteSettings";
+import { localBusinessSchema, type Schema } from "../utils/schema";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  schemas?: Schema[];
+  robots?: string;
+}
+
+const {
+  title,
+  description,
+  image = siteSettings.defaultSocialImage,
+  schemas = [],
+  robots = siteSettings.robots,
+} = Astro.props;
+
+const rawPath = Astro.url.pathname;
+const canonicalPath = rawPath === "/" ? "/" : `${rawPath.replace(/\/+$/, "")}/`;
+const canonical = new URL(canonicalPath, business.siteUrl);
+const imageUrl = new URL(image || seoDefaults.image, business.siteUrl);
+const structuredData = [localBusinessSchema(), ...schemas];
 ---
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="generator" content={Astro.generator}/><link rel="icon" href="/favicon.svg"/><link rel="canonical" href={canonical}/><title>{title}</title><meta name="description" content={description}/><meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:image" content={imageUrl}/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={imageUrl}/><StructuredData data={schema ? [localSchema,schema] : localSchema}/></head><body><SiteHeader/><main><slot/></main><Footer/></body></html>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={siteSettings.themeColor} />
+    <meta name="robots" content={robots} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <StructuredData data={structuredData} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

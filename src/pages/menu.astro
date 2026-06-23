@@ -1,4 +1,55 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'; import PageHero from '../components/ui/PageHero.astro'; import Breadcrumbs from '../components/ui/Breadcrumbs.astro'; import Section from '../components/ui/Section.astro'; import MenuSection from '../components/golf/MenuSection.astro'; import CTASection from '../components/ui/CTASection.astro'; import {menuSections,specials} from '../data/menu'; import {business} from '../data/business'; import {pageSeo} from '../data/seo';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MenuSection from "../components/golf/MenuSection.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import CTASection from "../components/ui/CTASection.astro";
+import HoursCard from "../components/ui/HoursCard.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Section from "../components/ui/Section.astro";
+import { business } from "../data/business";
+import { menuDisclaimer, menuSections, specials } from "../data/menu";
+import { pageSeo } from "../data/seo";
 ---
-<BaseLayout {...pageSeo.menu}><Breadcrumbs items={[{label:'Home',href:'/'},{label:'Menu'}]}/><PageHero eyebrow="Clubhouse kitchen & bar" title="The right food for a golf day." intro="Quick at the turn, comfortable at the table, and open to golfers and neighbors alike."><a class="btn-primary" href={business.phoneHref}>Call the clubhouse</a></PageHero><Section eyebrow="Current menu" title="Familiar favorites, done well."><div class="grid gap-6 lg:grid-cols-3">{menuSections.map(s=><MenuSection section={s}/>)}</div></Section><Section tone="cream" eyebrow="Weekly specials" title="A few good reasons to stay."><div class="grid gap-4 md:grid-cols-3">{specials.map(s=><p class="rounded-xl bg-white p-6 font-semibold text-forest">{s}</p>)}</div></Section><Section eyebrow="Hours" title="Kitchen open daily."><div class="surface grid gap-5 p-7 md:grid-cols-3">{business.hours.map(h=><div><p class="font-bold text-forest">{h.days}</p><p class="mt-1 text-sm text-charcoal/60">{h.times}</p></div>)}</div></Section><CTASection title="Stop in after the round." body="Menu availability and hours can change for private events. Call if you are making a special trip." primaryLabel={`Call ${business.phone}`} primaryHref={business.phoneHref} secondaryLabel="Get directions" secondaryHref={business.directionsUrl}/></BaseLayout>
+
+<BaseLayout {...pageSeo.menu}>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Menu" }]} />
+  <PageHero
+    eyebrow="Clubhouse kitchen & bar"
+    title="The right food for a golf day."
+    intro="Quick at the turn, comfortable at the table, and open to golfers and neighbors alike."
+  >
+    <a class="btn-primary" href={business.phoneHref}>Call the clubhouse</a>
+  </PageHero>
+  <Section eyebrow="Current menu" title="Familiar favorites, done well.">
+    <div class="grid gap-6 lg:grid-cols-3">
+      {menuSections.map((menu) => <MenuSection section={menu} />)}
+    </div>
+    <p class="mt-6 text-sm text-charcoal/60">{menuDisclaimer}</p>
+  </Section>
+  <Section
+    tone="cream"
+    eyebrow="Weekly specials"
+    title="A few good reasons to stay."
+  >
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        specials.map((special) => (
+          <p class="rounded-xl bg-white p-6 font-semibold text-forest">
+            {special}
+          </p>
+        ))
+      }
+    </div>
+  </Section>
+  <Section eyebrow="Hours" title="Kitchen open daily.">
+    <div class="max-w-xl"><HoursCard title="Club hours" /></div>
+  </Section>
+  <CTASection
+    title="Stop in after the round."
+    body="Menu availability and hours can change for private events. Call if you are making a special trip."
+    primaryLabel={`Call ${business.phone}`}
+    primaryHref={business.phoneHref}
+    secondaryLabel="Get directions"
+    secondaryHref={business.directionsUrl}
+  />
+</BaseLayout>

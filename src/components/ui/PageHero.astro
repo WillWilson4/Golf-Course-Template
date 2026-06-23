@@ -1,4 +1,20 @@
 ---
-interface Props{eyebrow:string;title:string;intro:string} const {eyebrow,title,intro}=Astro.props;
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+}
+const { eyebrow, title, intro } = Astro.props;
 ---
-<section class="topo bg-cream px-6 py-16 md:py-24"><div class="mx-auto max-w-7xl"><p class="eyebrow">{eyebrow}</p><h1 class="mt-4 max-w-4xl text-5xl leading-[1.05] md:text-7xl">{title}</h1><p class="mt-6 max-w-2xl text-lg leading-8 text-charcoal/70">{intro}</p><div class="mt-8 flex flex-wrap gap-3"><slot/></div></div></section>
+
+<section class="topo bg-cream px-6 py-16 md:py-24">
+  <div class="mx-auto max-w-7xl">
+    <p class="eyebrow">{eyebrow}</p><h1
+      class="mt-4 max-w-4xl text-5xl leading-[1.05] md:text-7xl"
+    >
+      {title}
+    </h1><p class="mt-6 max-w-2xl text-lg leading-8 text-charcoal/70">
+      {intro}
+    </p><div class="mt-8 flex flex-wrap gap-3"><slot /></div>
+  </div>
+</section>

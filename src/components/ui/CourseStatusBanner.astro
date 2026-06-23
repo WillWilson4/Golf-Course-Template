@@ -1,0 +1,27 @@
+---
+import { siteSettings } from "../../data/siteSettings";
+
+const { announcement } = siteSettings;
+---
+
+{
+  announcement.enabled && (
+    <aside class="bg-gold px-6 py-4 text-charcoal" aria-label="Course status">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 text-sm">
+        <p>
+          <strong>{announcement.label}</strong>
+          <span class="mx-2 opacity-40" aria-hidden="true">
+            |
+          </span>
+          {announcement.detail}
+        </p>
+        <a
+          class="font-bold underline underline-offset-4"
+          href={announcement.linkHref}
+        >
+          {announcement.linkLabel}
+        </a>
+      </div>
+    </aside>
+  )
+}

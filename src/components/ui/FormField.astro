@@ -1,0 +1,71 @@
+---
+interface Props {
+  label: string;
+  name: string;
+  type?: "text" | "email" | "tel" | "date";
+  autocomplete?: string;
+  required?: boolean;
+  kind?: "input" | "textarea" | "select";
+  options?: readonly string[];
+  help?: string;
+}
+
+const {
+  label,
+  name,
+  type = "text",
+  autocomplete,
+  required = false,
+  kind = "input",
+  options = [],
+  help,
+} = Astro.props;
+
+const helpId = help ? `${name}-help` : undefined;
+const fieldClass =
+  "rounded-xl border border-forest/20 bg-white p-3 font-normal focus:border-fairway";
+---
+
+<label class="grid gap-2 font-bold" for={name}>
+  <span>{label}{required && <span class="text-fairway"> *</span>}</span>
+  {
+    kind === "textarea" ? (
+      <textarea
+        class:list={[fieldClass, "min-h-36"]}
+        id={name}
+        name={name}
+        required={required}
+        aria-describedby={helpId}
+      />
+    ) : kind === "select" ? (
+      <select
+        class={fieldClass}
+        id={name}
+        name={name}
+        required={required}
+        aria-describedby={helpId}
+      >
+        {options.map((option) => (
+          <option>{option}</option>
+        ))}
+      </select>
+    ) : (
+      <input
+        class={fieldClass}
+        id={name}
+        name={name}
+        type={type}
+        autocomplete={autocomplete}
+        required={required}
+        aria-describedby={helpId}
+      />
+    )
+  }
+  {
+    help && (
+      <span id={helpId} class="text-sm font-normal text-charcoal/60">
+        {help}
+      </span>
+    )
+  }
+</label>

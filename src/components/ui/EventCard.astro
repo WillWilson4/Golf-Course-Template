@@ -1,0 +1,17 @@
+---
+interface Props {
+  event: { title: string; description: string; tag: string };
+  index: number;
+}
+
+const { event, index } = Astro.props;
+---
+
+<article class="surface p-7">
+  <p class="eyebrow">{event.tag}</p>
+  <h3 class="mt-8 text-3xl">{event.title}</h3>
+  <p class="mt-3 leading-7 text-charcoal/65">{event.description}</p>
+  <p class="mt-8 text-sm font-bold text-fairway">
+    {String(index + 1).padStart(2, "0")} / 04
+  </p>
+</article>

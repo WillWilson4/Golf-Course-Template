@@ -1,4 +1,34 @@
 ---
-interface Props{items:{label:string;href?:string}[]} const {items}=Astro.props;
+import StructuredData from "../seo/StructuredData.astro";
+import { breadcrumbSchema, type BreadcrumbItem } from "../../utils/schema";
+
+interface Props {
+  items: BreadcrumbItem[];
+  structuredData?: boolean;
+}
+
+const { items, structuredData = true } = Astro.props;
 ---
-<nav class="mx-auto max-w-7xl px-6 py-4 text-sm text-charcoal/60" aria-label="Breadcrumb"><ol class="flex flex-wrap gap-2">{items.map((item,i)=><li class="flex gap-2">{i>0&&<span aria-hidden="true">/</span>}{item.href?<a class="hover:text-forest" href={item.href}>{item.label}</a>:<span aria-current="page">{item.label}</span>}</li>)}</ol></nav>
+
+{structuredData && <StructuredData data={breadcrumbSchema(items)} />}
+<nav
+  class="mx-auto max-w-7xl px-6 py-4 text-sm text-charcoal/60"
+  aria-label="Breadcrumb"
+>
+  <ol class="flex flex-wrap gap-2">
+    {
+      items.map((item, index) => (
+        <li class="flex gap-2">
+          {index > 0 && <span aria-hidden="true">/</span>}
+          {item.href ? (
+            <a class="hover:text-forest" href={item.href}>
+              {item.label}
+            </a>
+          ) : (
+            <span aria-current="page">{item.label}</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

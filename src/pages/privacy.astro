@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import PageHero from "../components/ui/PageHero.astro";
+import Section from "../components/ui/Section.astro";
+import { privacyContent } from "../data/pageContent";
+import { utilitySeo } from "../data/seo";
+---
+
+<BaseLayout {...utilitySeo.privacy}>
+  <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Privacy" }]} />
+  <PageHero
+    eyebrow="Site information"
+    title={privacyContent.title}
+    intro={privacyContent.intro}
+  />
+  <Section narrow>
+    <div class="prose-guide">
+      <h2>Information on this website</h2>
+      <p>
+        By default, this static starter does not use accounts, a database,
+        analytics, advertising trackers, or connected forms. The contact and
+        event forms are visual placeholders and do not transmit information.
+      </p>
+      <h2>Third-party services</h2>
+      <p>
+        A course may later connect online booking, maps, analytics, email forms,
+        or other services. Those providers may collect information under their
+        own privacy policies. Update this page when integrations are added.
+      </p>
+      <h2>Before launch</h2>
+      <p>
+        Replace this generic policy with one that accurately describes the
+        services used on the live website and any applicable local requirements.
+      </p>
+    </div>
+  </Section>
+</BaseLayout>

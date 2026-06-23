@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  tone?: "forest" | "fairway" | "gold" | "mist";
+  decorative?: boolean;
+}
+
+const { label, tone = "forest", decorative = false } = Astro.props;
+const tones = {
+  forest: "bg-forest",
+  fairway: "bg-fairway",
+  gold: "bg-gold/60",
+  mist: "bg-mist",
+};
+---
+
+<div
+  class:list={[
+    "topo grid min-h-72 place-items-center rounded-2xl p-6",
+    tones[tone],
+  ]}
+  role={decorative ? undefined : "img"}
+  aria-label={decorative ? undefined : label}
+  aria-hidden={decorative ? "true" : undefined}
+>
+  {!decorative && <span class="sr-only">{label}</span>}
+</div>

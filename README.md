@@ -2,6 +2,8 @@
 
 A static-first, mobile-friendly golf course starter built with Astro, TypeScript, and Tailwind CSS. Business content is centralized in data files, guide articles use Markdown, and the production build contains static HTML with no client framework runtime.
 
+For a file-by-file editing guide, see [CUSTOMIZE.md](./CUSTOMIZE.md). Before publishing a real course, work through [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md).
+
 ## Local setup
 
 Requirements: Node.js 22.12 or newer and npm.
@@ -51,6 +53,9 @@ Most site-specific content lives in `src/data/`:
 - `events.ts` and `activities.ts` — card content
 - `navigation.ts` — primary navigation
 - `seo.ts` — default page titles and descriptions
+- `home.ts`, `localSeo.ts`, and `pageContent.ts` — page copy and calls to action
+- `siteSettings.ts` — announcement, social image, theme color, and utility links
+- `theme.ts` — documented color values mirrored in the stylesheet
 
 The current course name, contact details, rates, dates, and links are demonstration content. Replace them before launch. Visual placeholders on the Course and Contact pages are intentionally lightweight; add optimized `.webp` or `.avif` photography under `public/images/` when real assets are available.
 
@@ -75,6 +80,8 @@ Add an `.astro` file under `src/pages/`, use `BaseLayout` for metadata and globa
 
 ## SEO and forms
 
-The site includes canonical URLs, unique page metadata, Open Graph and Twitter cards, a sitemap, `robots.txt`, local-business structured data, and FAQ/article schema where relevant.
+The site includes canonical URLs, unique page metadata, Open Graph and Twitter cards, a generated social card, a sitemap, `robots.txt`, local-business structured data, breadcrumb JSON-LD, and FAQ/article schema where relevant.
 
 The event and contact forms are accessible static UI placeholders. They do not transmit or store data. Connect a chosen form endpoint and update the explanatory copy before enabling submission.
+
+Cloudflare Pages applies the conservative security headers in `public/_headers`. No Content Security Policy is included because future booking, map, image, analytics, and form providers are not yet known. Add and test a CSP after those integrations are finalized.

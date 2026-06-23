@@ -1,0 +1,25 @@
+---
+import { business } from "../../data/business";
+
+const links = [
+  { label: "Facebook", href: business.social.facebook },
+  { label: "Instagram", href: business.social.instagram },
+  { label: "Google Business Profile", href: business.social.googleBusiness },
+].filter((link) => link.href);
+---
+
+{
+  links.length > 0 && (
+    <nav class="flex flex-wrap gap-4 text-sm" aria-label="Social media">
+      {links.map((link) => (
+        <a
+          class="text-white/70 hover:text-white"
+          href={link.href}
+          rel="me noreferrer"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  )
+}

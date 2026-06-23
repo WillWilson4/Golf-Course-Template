@@ -1,0 +1,23 @@
+---
+import { business } from "../../data/business";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Hours" } = Astro.props;
+---
+
+<article class="surface p-7">
+  <p class="eyebrow">{title}</p>
+  <div class="mt-6 space-y-4">
+    {
+      business.hours.map((hours) => (
+        <div>
+          <p class="font-bold text-forest">{hours.days}</p>
+          <p class="text-sm text-charcoal/60">{hours.times}</p>
+        </div>
+      ))
+    }
+  </div>
+</article>
