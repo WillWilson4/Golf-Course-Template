@@ -1,13 +1,14 @@
 ---
+import { business } from "../../data/business";
 import { memberships } from "../../data/memberships";
 ---
 
-<div class="grid gap-6 md:grid-cols-3">
+<div class="grid items-stretch gap-6 md:grid-cols-3">
   {
     memberships.map((plan) => (
       <article
         class:list={[
-          "surface relative p-7",
+          "surface relative flex h-full flex-col p-7",
           plan.featured && "border-gold ring-2 ring-gold",
         ]}
       >
@@ -17,21 +18,27 @@ import { memberships } from "../../data/memberships";
           </span>
         )}
         <h3 class="text-2xl">{plan.name}</h3>
-        <>
-          <p class="mt-5 font-serif text-4xl text-forest">
-            {plan.price}
-            <span class="font-sans text-sm text-charcoal/60"> / season</span>
-          </p>
-          <p class="mt-2 text-sm text-charcoal/60">{plan.detail}</p>
-          <ul class="mt-6 space-y-3 text-sm">
-            {plan.benefits.map((b) => (
-              <li class="flex gap-2">
-                <span class="text-gold">◆</span>
-                {b}
-              </li>
-            ))}
-          </ul>
-        </>
+        <p class="mt-5 font-serif text-4xl text-forest">
+          {plan.price}
+          <span class="font-sans text-sm text-charcoal/60"> / season</span>
+        </p>
+        <p class="mt-2 text-sm text-charcoal/60">{plan.detail}</p>
+        <ul class="mt-6 space-y-3 text-sm">
+          {plan.benefits.map((benefit) => (
+            <li class="flex gap-2">
+              <span class="text-gold" aria-hidden="true">
+                &#10003;
+              </span>
+              {benefit}
+            </li>
+          ))}
+        </ul>
+        <a
+          class="mt-auto pt-8 text-sm font-bold text-fairway underline decoration-gold underline-offset-4"
+          href={`mailto:${business.email}?subject=${encodeURIComponent(`${plan.name} membership inquiry`)}`}
+        >
+          Ask about this plan <span aria-hidden="true">&rarr;</span>
+        </a>
       </article>
     ))
   }

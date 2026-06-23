@@ -25,8 +25,18 @@ import { faqSchema } from "../utils/schema";
     intro="Straightforward seasonal options for golfers who want regular access, familiar faces, and a little more flexibility."
   >
     <a class="btn-primary" href="#options">Compare options</a>
+    <a
+      class="btn-secondary"
+      href={`mailto:${business.email}?subject=Membership interest`}
+    >
+      Ask about membership
+    </a>
   </PageHero>
-  <Section id="options" eyebrow="2026 memberships" title="Choose how you play.">
+  <Section
+    id="options"
+    eyebrow="Season memberships"
+    title="Choose how you play."
+  >
     <MembershipCards />
     <p class="mt-5 text-sm text-charcoal/60">{membershipDisclaimer}</p>
   </Section>

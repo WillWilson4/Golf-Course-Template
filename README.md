@@ -1,19 +1,36 @@
-# Cedar Ridge Golf Club website
+# Golf Course Website Starter
 
-A static-first, mobile-friendly golf course starter built with Astro, TypeScript, and Tailwind CSS. Business content is centralized in data files, guide articles use Markdown, and the production build contains static HTML with no client framework runtime.
+A premium, static-first golf course website template built with Astro, TypeScript, and Tailwind CSS. It includes public golf, rates, outings, menu, activities, memberships, contact, local guides, SEO metadata, structured data, and utility pages without a client-side framework runtime.
 
-For a file-by-file editing guide, see [CUSTOMIZE.md](./CUSTOMIZE.md). Before publishing a real course, work through [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md).
+The included Cedar Ridge Golf Club content is demonstration data. Use the handoff documents before adapting the starter for a real course:
+
+- [CLIENT_ONBOARDING.md](./CLIENT_ONBOARDING.md) — collect course-owner content and requirements
+- [CUSTOMIZE.md](./CUSTOMIZE.md) — make file-based content and branding changes
+- [DEMO_CONTENT_CHECKLIST.md](./DEMO_CONTENT_CHECKLIST.md) — remove every demo value
+- [LAUNCH_CHECKLIST.md](./LAUNCH_CHECKLIST.md) — prepare and deploy the production site
+- [QA_NOTES.md](./QA_NOTES.md) — complete manual desktop, mobile, SEO, and deploy checks
+
+## Stack
+
+- Astro with static output
+- TypeScript
+- Tailwind CSS
+- Markdown content collections
+- Astro sitemap integration
+- Cloudflare Pages-compatible static assets and headers
+
+No database, authentication, CMS, server functions, or paid backend service is required.
 
 ## Local setup
 
-Requirements: Node.js 22.12 or newer and npm.
+Requires Node.js 22.12 or newer and npm.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Astro prints the local development URL. To create and inspect the production build:
+Production validation and preview:
 
 ```bash
 npm run check
@@ -21,11 +38,9 @@ npm run build
 npm run preview
 ```
 
-The generated site is written to `dist/`.
+The generated site is written to `dist/`, which is intentionally not committed.
 
-## Cloudflare Pages
-
-Connect this GitHub repository in Cloudflare Pages and use:
+## Cloudflare Pages settings
 
 - Framework preset: **Astro**
 - Build command: `npm run build`
@@ -33,55 +48,29 @@ Connect this GitHub repository in Cloudflare Pages and use:
 - Root directory: `/`
 - Node.js version: `22.12` or newer
 
-No adapter, Pages Functions, database, or environment variables are required. The project uses Astro's static output.
+No adapter, Pages Functions, database, or environment variables are currently required. Conservative response headers live in `public/_headers`.
 
-Before deploying, replace the example domain in these three places:
+## Where to edit
 
-- `astro.config.mjs` (`site`)
-- `src/data/business.ts` (`siteUrl`)
-- `public/robots.txt` (sitemap URL)
+- Course identity, contact details, domain, booking link, hours: `src/data/business.ts`
+- Homepage and calls to action: `src/data/home.ts`
+- Scorecard, holes, policies, gallery labels: `src/data/course.ts`
+- Rates, menu, memberships, events, activities: matching files in `src/data/`
+- Navigation, announcement, social image, site behavior: `src/data/siteSettings.ts`
+- Titles and descriptions: `src/data/seo.ts`
+- Colors and typography tokens: `src/styles/global.css`
+- Guide articles: `src/content/guides/`
 
-## Edit course content
+See [CUSTOMIZE.md](./CUSTOMIZE.md) for the complete file map.
 
-Most site-specific content lives in `src/data/`:
+## Demo content and forms
 
-- `business.ts` — name, address, phone, hours, booking link, and site URL
-- `course.ts` — status, stats, tees, holes, and policies
-- `rates.ts` — green fees and rate notes
-- `menu.ts` — clubhouse sections, items, and specials
-- `memberships.ts` — plans, prices, and benefits
-- `events.ts` and `activities.ts` — card content
-- `navigation.ts` — primary navigation
-- `seo.ts` — default page titles and descriptions
-- `home.ts`, `localSeo.ts`, and `pageContent.ts` — page copy and calls to action
-- `siteSettings.ts` — announcement, social image, theme color, and utility links
-- `theme.ts` — documented color values mirrored in the stylesheet
+Rates, prices, contact details, location, booking URL, and local guide references are sample content. Complete [DEMO_CONTENT_CHECKLIST.md](./DEMO_CONTENT_CHECKLIST.md) before launch.
 
-The current course name, contact details, rates, dates, and links are demonstration content. Replace them before launch. Visual placeholders on the Course and Contact pages are intentionally lightweight; add optimized `.webp` or `.avif` photography under `public/images/` when real assets are available.
+The contact and event forms are accessible UI placeholders only. They do not transmit or store data. Connect an approved form destination and update the privacy page, or remove the forms.
 
-## Add a guide
+## SEO and maintenance
 
-Create a Markdown file in `src/content/guides/` with this frontmatter:
+The starter includes unique page metadata, canonicals, Open Graph and Twitter tags, a generated social card, sitemap, `robots.txt`, LocalBusiness/GolfCourse schema, breadcrumb schema, FAQ schema, and guide article schema.
 
-```md
----
-title: Guide title
-description: A concise search description.
-published: 2026-06-22
-eyebrow: Local golf guide
----
-```
-
-The guide index and static detail route are generated automatically. Internal Markdown links should use site paths such as `/tee-times`.
-
-## Add a page
-
-Add an `.astro` file under `src/pages/`, use `BaseLayout` for metadata and global structure, and compose the reusable components in `src/components/`. Add its navigation item and SEO copy to the related data files.
-
-## SEO and forms
-
-The site includes canonical URLs, unique page metadata, Open Graph and Twitter cards, a generated social card, a sitemap, `robots.txt`, local-business structured data, breadcrumb JSON-LD, and FAQ/article schema where relevant.
-
-The event and contact forms are accessible static UI placeholders. They do not transmit or store data. Connect a chosen form endpoint and update the explanatory copy before enabling submission.
-
-Cloudflare Pages applies the conservative security headers in `public/_headers`. No Content Security Policy is included because future booking, map, image, analytics, and form providers are not yet known. Add and test a CSP after those integrations are finalized.
+Dependency audit notes are recorded in [MAINTENANCE.md](./MAINTENANCE.md). Do not use `npm audit fix --force` without reviewing the resulting major tooling changes.

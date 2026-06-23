@@ -7,14 +7,16 @@ interface Props {
 const { eyebrow, title, intro } = Astro.props;
 ---
 
-<section class="topo bg-cream px-6 py-16 md:py-24">
+<section
+  class="topo border-b border-forest/5 bg-cream px-5 py-12 sm:px-6 sm:py-16 md:py-24"
+>
   <div class="mx-auto max-w-7xl">
     <p class="eyebrow">{eyebrow}</p><h1
-      class="mt-4 max-w-4xl text-5xl leading-[1.05] md:text-7xl"
+      class="mt-4 max-w-4xl text-4xl leading-[1.05] sm:text-5xl md:text-7xl"
     >
       {title}
     </h1><p class="mt-6 max-w-2xl text-lg leading-8 text-charcoal/70">
       {intro}
-    </p><div class="mt-8 flex flex-wrap gap-3"><slot /></div>
+    </p><div class="mt-8 grid gap-3 sm:flex sm:flex-wrap"><slot /></div>
   </div>
 </section>

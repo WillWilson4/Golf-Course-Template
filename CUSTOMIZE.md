@@ -2,6 +2,8 @@
 
 This site keeps course-specific content in `src/data/` and `src/content/` wherever practical. Start with the files below, then run `npm run check` and `npm run build` after edits.
 
+Before editing, collect the client’s answers in [CLIENT_ONBOARDING.md](./CLIENT_ONBOARDING.md). After editing, complete [DEMO_CONTENT_CHECKLIST.md](./DEMO_CONTENT_CHECKLIST.md).
+
 ## Course identity, location, and contact details
 
 Edit `src/data/business.ts` to change:

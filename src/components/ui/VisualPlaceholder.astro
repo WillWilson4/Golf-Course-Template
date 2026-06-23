@@ -7,21 +7,42 @@ interface Props {
 
 const { label, tone = "forest", decorative = false } = Astro.props;
 const tones = {
-  forest: "bg-forest",
-  fairway: "bg-fairway",
-  gold: "bg-gold/60",
-  mist: "bg-mist",
+  forest: "bg-forest text-white",
+  fairway: "bg-fairway text-white",
+  gold: "bg-gold/70 text-charcoal",
+  mist: "bg-mist text-forest",
 };
 ---
 
 <div
   class:list={[
-    "topo grid min-h-72 place-items-center rounded-2xl p-6",
+    "topo relative grid min-h-72 overflow-hidden rounded-2xl p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)]",
     tones[tone],
   ]}
   role={decorative ? undefined : "img"}
   aria-label={decorative ? undefined : label}
   aria-hidden={decorative ? "true" : undefined}
 >
-  {!decorative && <span class="sr-only">{label}</span>}
+  <div
+    class="absolute -right-12 -bottom-24 h-64 w-52 rotate-12 rounded-[50%] bg-white/10"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute right-16 bottom-20 h-20 w-px bg-current/55"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute right-8 bottom-36 h-7 w-8 bg-current/55 [clip-path:polygon(0_0,100%_35%,0_100%)]"
+    aria-hidden="true"
+  >
+  </div>
+  {
+    !decorative && (
+      <span class="relative mt-auto w-fit rounded-full border border-current/20 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] backdrop-blur-sm">
+        Course photo
+      </span>
+    )
+  }
 </div>

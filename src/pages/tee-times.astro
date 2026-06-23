@@ -45,7 +45,8 @@ const faqs = [
     <a class="btn-secondary" href={business.phoneHref}>Call {business.phone}</a>
   </PageHero>
   <Section
-    eyebrow="2026 public rates"
+    id="rates"
+    eyebrow="Public rates"
     title="Simple rates, no hidden surprises."
   >
     <RatesTable />
@@ -55,6 +56,12 @@ const faqs = [
     <p class="mt-5 rounded-xl bg-cream p-4 text-sm text-charcoal/70">
       {rateDisclaimer}
     </p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a class="btn-primary" href={business.bookingUrl}
+        >Check available tee times</a
+      >
+      <a class="btn-secondary" href={business.phoneHref}>Call the golf shop</a>
+    </div>
   </Section>
   <Section tone="cream" eyebrow="Good to know" title="Tee-time questions">
     <FAQBlock items={faqs} />

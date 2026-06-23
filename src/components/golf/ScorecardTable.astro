@@ -2,33 +2,38 @@
 import { course } from "../../data/course";
 ---
 
-<div class="overflow-x-auto rounded-2xl border border-forest/10">
-  <table class="w-full min-w-xl text-left text-sm">
-    <thead class="bg-forest text-white"
-      ><tr
-        ><th class="p-4">Tee</th><th class="p-4">Yards</th><th class="p-4"
-          >Rating</th
-        ><th class="p-4">Slope</th></tr
-      ></thead
-    ><tbody class="divide-y divide-forest/10"
-      >{
-        course.tees.map((tee) => (
-          <tr>
-            <>
-              <th class="p-4 font-semibold">
-                <span
-                  class="mr-3 inline-block size-3 rounded-full border border-charcoal/20 align-middle"
-                  style={`background:${tee.color}`}
-                />
-                {tee.name}
-              </th>
-              <td class="p-4">{tee.yards.toLocaleString()}</td>
-              <td class="p-4">{tee.rating}</td>
-              <td class="p-4">{tee.slope}</td>
-            </>
+<div class="table-shell">
+  <table class="w-full min-w-[36rem] text-left text-sm tabular-nums">
+    <caption class="sr-only">Course tee distances, ratings, and slopes</caption>
+    <thead class="bg-forest text-white">
+      <tr>
+        <th class="px-5 py-4" scope="col">Tee</th>
+        <th class="px-5 py-4" scope="col">Yards</th>
+        <th class="px-5 py-4" scope="col">Rating</th>
+        <th class="px-5 py-4" scope="col">Slope</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-forest/10">
+      {
+        course.tees.map((tee, index) => (
+          <tr class:list={[index % 2 === 1 && "bg-mist/45"]}>
+            <th class="px-5 py-4 font-semibold" scope="row">
+              <span
+                class="mr-3 inline-block size-3 rounded-full border border-charcoal/20 align-middle"
+                style={`background:${tee.color}`}
+                aria-hidden="true"
+              />
+              {tee.name}
+            </th>
+            <td class="px-5 py-4">{tee.yards.toLocaleString()}</td>
+            <td class="px-5 py-4">{tee.rating}</td>
+            <td class="px-5 py-4">{tee.slope}</td>
           </tr>
         ))
-      }</tbody
-    >
+      }
+    </tbody>
   </table>
 </div>
+<p class="mt-3 text-xs text-charcoal/55 sm:hidden">
+  Swipe horizontally to see the full scorecard.
+</p>

@@ -22,7 +22,10 @@ const tones = {
 };
 ---
 
-<section {id} class:list={["px-6 py-16 md:py-24", tones[tone]]}>
+<section
+  {id}
+  class:list={["px-5 py-14 sm:px-6 md:py-20 lg:py-24", tones[tone]]}
+>
   <div class:list={["mx-auto", narrow ? "max-w-3xl" : "max-w-7xl"]}>
     {
       eyebrow && (
@@ -34,7 +37,7 @@ const tones = {
       title && (
         <h2
           class:list={[
-            "mt-3 text-3xl md:text-5xl",
+            "mt-3 max-w-4xl text-3xl leading-tight sm:text-4xl lg:text-5xl",
             tone === "green" && "text-white",
           ]}
         >
@@ -45,13 +48,15 @@ const tones = {
       intro && (
         <p
           class:list={[
-            "mt-5 max-w-2xl text-lg leading-8",
+            "mt-5 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8",
             tone === "green" ? "text-white/70" : "text-charcoal/70",
           ]}
         >
           {intro}
         </p>
       )
-    }<div class:list={[(eyebrow || title || intro) && "mt-10"]}><slot /></div>
+    }<div class:list={[(eyebrow || title || intro) && "mt-8 md:mt-10"]}>
+      <slot />
+    </div>
   </div>
 </section>

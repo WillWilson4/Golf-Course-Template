@@ -8,6 +8,7 @@ import Section from "../components/ui/Section.astro";
 import { eventPlanningSteps, events } from "../data/events";
 import { forms } from "../data/forms";
 import { pageSeo } from "../data/seo";
+import { business } from "../data/business";
 ---
 
 <BaseLayout {...pageSeo.events}>
@@ -18,6 +19,7 @@ import { pageSeo } from "../data/seo";
     intro="From the first planning call to the last scorecard, we keep the logistics clear and the day moving."
   >
     <a class="btn-primary" href="#inquiry">Start an inquiry</a>
+    <a class="btn-secondary" href={business.phoneHref}>Call the golf shop</a>
   </PageHero>
 
   <Section eyebrow="Ways to gather" title="Golf, clubhouse, or both.">
@@ -80,6 +82,17 @@ import { pageSeo } from "../data/seo";
         {forms.event.buttonLabel}
       </button>
       <p class="text-sm text-charcoal/60">{forms.helperText}</p>
+      <p class="rounded-xl bg-cream p-4 text-sm leading-6 text-charcoal/70">
+        Prefer a direct conversation? Call <a
+          class="font-bold text-fairway underline underline-offset-4"
+          href={business.phoneHref}>{business.phone}</a
+        >
+        or email <a
+          class="font-bold text-fairway underline underline-offset-4"
+          href={`mailto:${business.email}?subject=Event inquiry`}
+          >{business.email}</a
+        >.
+      </p>
     </form>
   </Section>
 </BaseLayout>

@@ -2,26 +2,31 @@
 import { rates } from "../../data/rates";
 ---
 
-<div class="overflow-x-auto rounded-2xl border border-forest/10">
-  <table class="w-full min-w-lg text-left">
-    <thead class="bg-forest text-white"
-      ><tr
-        ><th class="p-4">Rate</th><th class="p-4">Walking</th><th class="p-4"
-          >With cart</th
-        ></tr
-      ></thead
-    ><tbody class="divide-y divide-forest/10"
-      >{
-        rates.map((rate) => (
-          <tr>
-            <>
-              <th class="p-4 font-medium">{rate.label}</th>
-              <td class="p-4">{rate.walking}</td>
-              <td class="p-4">{rate.riding}</td>
-            </>
+<div class="table-shell">
+  <table class="w-full min-w-[34rem] text-left tabular-nums">
+    <caption class="sr-only">Green fees for walking and riding rounds</caption>
+    <thead class="bg-forest text-white">
+      <tr>
+        <th class="px-5 py-4" scope="col">Rate</th>
+        <th class="px-5 py-4" scope="col">Walking</th>
+        <th class="px-5 py-4" scope="col">With cart</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-forest/10">
+      {
+        rates.map((rate, index) => (
+          <tr class:list={[index % 2 === 1 && "bg-mist/45"]}>
+            <th class="px-5 py-4 font-medium" scope="row">
+              {rate.label}
+            </th>
+            <td class="px-5 py-4 font-semibold text-forest">{rate.walking}</td>
+            <td class="px-5 py-4 font-semibold text-forest">{rate.riding}</td>
           </tr>
         ))
-      }</tbody
-    >
+      }
+    </tbody>
   </table>
 </div>
+<p class="mt-3 text-xs text-charcoal/55 sm:hidden">
+  Swipe horizontally to compare every rate.
+</p>

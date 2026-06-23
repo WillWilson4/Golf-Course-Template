@@ -5,6 +5,8 @@ import Breadcrumbs from "../../components/ui/Breadcrumbs.astro";
 import PageHero from "../../components/ui/PageHero.astro";
 import Section from "../../components/ui/Section.astro";
 import { pageSeo } from "../../data/seo";
+import { guideIndexContent } from "../../data/pageContent";
+import { business } from "../../data/business";
 
 const guides = (await getCollection("guides")).sort(
   (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
@@ -13,12 +15,11 @@ const guides = (await getCollection("guides")).sort(
 
 <BaseLayout {...pageSeo.guides}>
   <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Guides" }]} />
-  <PageHero
-    eyebrow="Guides"
-    title="Useful notes for better local golf."
-    intro="Practical help for choosing a course, planning a round, joining a league, and getting more from the golf season."
-  />
-  <Section eyebrow="Latest guides" title="Start with the question you have.">
+  <PageHero {...guideIndexContent.hero}>
+    <a class="btn-primary" href={business.bookingUrl}>Book a tee time</a>
+    <a class="btn-secondary" href="/tee-times#rates">View rates</a>
+  </PageHero>
+  <Section {...guideIndexContent.section}>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {
         guides.map((guide) => (

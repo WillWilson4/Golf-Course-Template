@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/ui/PageHero.astro";
 import Section from "../components/ui/Section.astro";
 import { business } from "../data/business";
 import { utilitySeo } from "../data/seo";
@@ -14,12 +15,15 @@ const links = [
 ---
 
 <BaseLayout {...utilitySeo.notFound} robots="noindex, follow">
-  <Section
-    tone="cream"
+  <PageHero
     eyebrow="404"
     title="That page is out of bounds."
-    intro="The link may be old, or the page may have moved. These routes should get you back into play."
+    intro="The link may be old, or the page may have moved. We can get you back into play."
   >
+    <a class="btn-primary" href="/">Return home</a>
+    <a class="btn-secondary" href={business.bookingUrl}>Book a tee time</a>
+  </PageHero>
+  <Section eyebrow="Keep exploring" title="Where would you like to go?">
     <nav
       class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
       aria-label="Helpful links"
@@ -27,10 +31,10 @@ const links = [
       {
         links.map((link) => (
           <a
-            class="surface p-5 font-bold text-fairway hover:bg-white"
+            class="surface flex min-h-20 items-center justify-between gap-4 p-5 font-bold text-fairway transition-colors hover:bg-cream"
             href={link.href}
           >
-            {link.label} <span aria-hidden="true">→</span>
+            {link.label} <span aria-hidden="true">&rarr;</span>
           </a>
         ))
       }

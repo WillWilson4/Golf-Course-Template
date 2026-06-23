@@ -6,23 +6,20 @@ export const seoDefaults = {
 };
 export const pageSeo = {
   home: {
-    title: `${business.name} | Public Golf in Cedar Ridge`,
+    title: `${business.name} | Public Golf in ${business.address.city}`,
     description: business.tagline,
   },
   course: {
     title: `The Course | ${business.name}`,
-    description:
-      "Explore the scorecard, hole-by-hole guide, course details, and playing policies at Cedar Ridge Golf Club.",
+    description: `Explore the scorecard, hole-by-hole guide, course details, and playing policies at ${business.name}.`,
   },
   teeTimes: {
     title: `Tee Times & Rates | ${business.name}`,
-    description:
-      "View public golf rates and book a tee time at Cedar Ridge Golf Club.",
+    description: `View public golf rates and book a tee time at ${business.name}.`,
   },
   events: {
     title: `Golf Outings & Events | ${business.name}`,
-    description:
-      "Plan a golf outing, tournament, league, or clubhouse event in Cedar Ridge.",
+    description: `Plan a golf outing, tournament, league, or clubhouse event in ${business.address.city}.`,
   },
   menu: {
     title: `Clubhouse Menu | ${business.name}`,
@@ -36,18 +33,15 @@ export const pageSeo = {
   },
   memberships: {
     title: `Golf Memberships | ${business.name}`,
-    description:
-      "Compare membership options, pricing, and benefits at Cedar Ridge Golf Club.",
+    description: `Compare membership options, pricing, and benefits at ${business.name}.`,
   },
   contact: {
     title: `Contact & Directions | ${business.name}`,
-    description:
-      "Find hours, directions, phone, email, and contact information for Cedar Ridge Golf Club.",
+    description: `Find hours, directions, phone, email, and contact information for ${business.name}.`,
   },
   guides: {
     title: `Local Golf Guides | ${business.name}`,
-    description:
-      "Useful local golf guides, course tips, and planning resources from Cedar Ridge Golf Club.",
+    description: `Useful local golf guides, course tips, and planning resources from ${business.name}.`,
   },
 } as const;
 

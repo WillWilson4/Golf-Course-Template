@@ -7,6 +7,7 @@ export const home = {
     intro: business.tagline,
     primaryCta: { label: "Book a tee time", href: business.bookingUrl },
     secondaryCta: { label: "Plan an outing", href: "/events" },
+    tertiaryCta: { label: "View rates", href: "/tee-times#rates" },
   },
   quickSection: {
     eyebrow: "Start here",
@@ -65,5 +66,7 @@ export const home = {
   finalCta: {
     title: "Ready when you are.",
     body: `${business.address.street}, ${business.address.city} · Call ${business.phone} for course conditions or same-day availability.`,
+    primaryCta: { label: "Book a tee time", href: business.bookingUrl },
+    secondaryCta: { label: "Get directions", href: "/contact" },
   },
 } as const;

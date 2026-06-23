@@ -13,26 +13,34 @@ import { pageSeo } from "../data/seo";
 
 <BaseLayout {...pageSeo.home}>
   <section
-    class="relative overflow-hidden bg-forest px-6 py-16 text-white md:py-32"
+    class="relative overflow-hidden bg-forest px-5 py-14 text-white sm:px-6 sm:py-20 md:py-28 lg:py-32"
   >
     <div class="topo absolute inset-0 opacity-50" aria-hidden="true"></div>
     <div class="relative mx-auto max-w-7xl">
       <p class="eyebrow text-gold">{home.hero.eyebrow}</p>
-      <h1 class="mt-5 max-w-4xl text-6xl leading-[0.98] text-white md:text-8xl">
+      <h1
+        class="mt-5 max-w-4xl text-5xl leading-[0.98] text-white sm:text-6xl md:text-7xl lg:text-8xl"
+      >
         {home.hero.title}
       </h1>
-      <p class="mt-7 max-w-2xl text-xl leading-8 text-white/70">
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/75 sm:text-xl">
         {home.hero.intro}
       </p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a class="btn-primary" href={home.hero.primaryCta.href}
+      <div class="mt-8 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
+        <a class="btn-primary w-full sm:w-auto" href={home.hero.primaryCta.href}
           >{home.hero.primaryCta.label}</a
         >
         <a
-          class="btn border border-white/50 text-white hover:bg-white hover:text-forest"
+          class="btn w-full border border-white/50 text-white hover:bg-white hover:text-forest sm:w-auto"
           href={home.hero.secondaryCta.href}
         >
           {home.hero.secondaryCta.label}
+        </a>
+        <a
+          class="inline-flex min-h-12 items-center justify-center px-3 text-sm font-bold text-gold underline decoration-gold/50 underline-offset-4 hover:text-white"
+          href={home.hero.tertiaryCta.href}
+        >
+          {home.hero.tertiaryCta.label}
         </a>
       </div>
     </div>
@@ -83,9 +91,9 @@ import { pageSeo } from "../data/seo";
   <CTASection
     title={home.finalCta.title}
     body={home.finalCta.body}
-    primaryLabel="Book a tee time"
-    primaryHref={home.hero.primaryCta.href}
-    secondaryLabel="Directions"
-    secondaryHref="/contact"
+    primaryLabel={home.finalCta.primaryCta.label}
+    primaryHref={home.finalCta.primaryCta.href}
+    secondaryLabel={home.finalCta.secondaryCta.label}
+    secondaryHref={home.finalCta.secondaryCta.href}
   />
 </BaseLayout>

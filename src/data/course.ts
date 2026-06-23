@@ -1,4 +1,10 @@
 export const course = {
+  overview: {
+    eyebrow: "The course",
+    title: "Interesting choices. Honest golf.",
+    intro:
+      "Our 18-hole layout moves through open meadows, mature cedar stands, and a rolling ridge—with a tee that fits your day.",
+  },
   par: 72,
   holesCount: 18,
   length: "6,742 yards",
@@ -69,5 +75,25 @@ export const course = {
   teeGuide: {
     title: "Which tee should I play?",
     body: "Choose a set of tees that lets you reach most par fours in regulation and keeps long approach shots occasional—not constant. The golf shop can help if you are between tees.",
+  },
+  gallery: {
+    eyebrow: "Course gallery",
+    title: "The view changes with the round.",
+    intro:
+      "Replace these lightweight placeholders with optimized WebP or AVIF course photography.",
+    placeholders: [
+      {
+        label: "Course photography placeholder: opening fairway",
+        tone: "forest",
+      },
+      {
+        label: "Course photography placeholder: putting green",
+        tone: "fairway",
+      },
+      {
+        label: "Course photography placeholder: clubhouse at sunset",
+        tone: "gold",
+      },
+    ],
   },
 } as const;

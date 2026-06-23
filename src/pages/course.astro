@@ -14,11 +14,7 @@ import { pageSeo } from "../data/seo";
 
 <BaseLayout {...pageSeo.course}>
   <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Course" }]} />
-  <PageHero
-    eyebrow="The course"
-    title="Interesting choices. Honest golf."
-    intro="Our 18-hole layout moves through open meadows, mature cedar stands, and a rolling ridge—with a tee that fits your day."
-  >
+  <PageHero {...course.overview}>
     <a class="btn-primary" href={business.bookingUrl}>Book a tee time</a>
   </PageHero>
 
@@ -48,7 +44,7 @@ import { pageSeo } from "../data/seo";
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         course.holes.map((hole) => (
-          <article class="surface p-6">
+          <article class="surface flex min-h-56 flex-col p-6 transition-shadow hover:shadow-[0_20px_55px_rgba(18,60,45,0.11)]">
             <div class="flex items-start justify-between gap-4">
               <p class="eyebrow">Hole {hole.number}</p>
               <p class="text-sm font-bold text-fairway">
@@ -56,7 +52,9 @@ import { pageSeo } from "../data/seo";
               </p>
             </div>
             <h3 class="mt-5 text-2xl">{hole.name}</h3>
-            <p class="mt-3 text-sm leading-6 text-charcoal/65">{hole.tip}</p>
+            <p class="mt-auto pt-3 text-sm leading-6 text-charcoal/65">
+              {hole.tip}
+            </p>
           </article>
         ))
       }
@@ -79,22 +77,16 @@ import { pageSeo } from "../data/seo";
   </Section>
 
   <Section
-    eyebrow="Course gallery"
-    title="The view changes with the round."
-    intro="Replace these lightweight placeholders with optimized WebP or AVIF course photography."
+    eyebrow={course.gallery.eyebrow}
+    title={course.gallery.title}
+    intro={course.gallery.intro}
   >
     <div class="grid gap-4 md:grid-cols-3">
-      <VisualPlaceholder
-        label="Course photography placeholder: opening fairway"
-      />
-      <VisualPlaceholder
-        label="Course photography placeholder: putting green"
-        tone="fairway"
-      />
-      <VisualPlaceholder
-        label="Course photography placeholder: clubhouse at sunset"
-        tone="gold"
-      />
+      {
+        course.gallery.placeholders.map((placeholder) => (
+          <VisualPlaceholder {...placeholder} />
+        ))
+      }
     </div>
   </Section>
 
